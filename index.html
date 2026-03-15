@@ -173,7 +173,7 @@ const storedPass = localStorage.getItem(user);
 
 if (storedPass === pass) {
 localStorage.setItem("usuarioActivo", user)
-window.location.href = "index2.html";
+window.location.replace("index2.html");
 } else {
 alert('Usuario o contraseña incorrectos');
 }
