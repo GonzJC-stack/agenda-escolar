@@ -1,0 +1,369 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<title>Agenda - Universidad del Atlántico</title>
+<link rel="stylesheet" href="styles2.css">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+</head>
+<body>
+
+<header>
+    <div class="logo">
+        <a href="https://uda.edu.mx/" target="_blank">
+            <img src="Logouda.png" alt="Logo Universidad del Atlantico">
+        </a>
+    </div>
+    <div class="user">
+        <p>Hola, <span id="nombreUsuario"></span></p>
+        <a href="index1.html" class="logout" onclick="cerrarSesion()">Cerrar sesión</a>
+    </div>
+</header>
+
+<nav>
+    <a href="#" data-section="inicio">Inicio</a>
+    <a href="#" data-section="agenda">Agenda</a>
+    <a href="#" data-section="tareas">Tareas</a>
+    <a href="#" data-section="perfil">Perfil</a>
+    <a href="#" data-section="cronología">Cronología</a>
+</nav>
+
+<!-- SECCION DE INICIO -->
+
+<section id="inicio" class="page active">
+    <section class="welcome">
+        <h2>Hola, <span id="saludoUsuario"></span>. Tu semana académica</h2>
+
+<!-- VISTA RAPIDA DE HOY -->
+
+      <div class="card today">
+        <h3>Vista rápida de hoy</h3>
+        <p><strong id="fechaActual"></strong></p>
+        <p>📘 Cálculo I - Aula 102 - 08:00 - 11:00</p>
+        <p>📚 Historia - Aula 201 - 11:30 - 01:30</p>
+    </div>
+
+    </section>
+</section>
+
+<!-- SECCION DE AGENDA -->
+
+<div class="container">
+  
+  <section id="agenda" class="page">
+    <div class="card schedule">
+        <h3>Mi Agenda Semanal</h3>
+        <div class="grid">
+            <div class="day" data-day="Lun">Lun</div> 
+            <div class="day" data-day="Mar">Mar</div>
+            <div class="day" data-day="Mié">Mié</div>
+            <div class="day" data-day="Jue">Jue</div>
+            <div class="day" data-day="Vie">Vie</div>
+
+            <div class="class blue">Cálculo I</div>
+            <div class="class orange">Lab Física</div>
+            <div class="class blue">Matematicas</div>
+            <div class="class green">Probabilidades</div>
+            <div class="class orange">Examen Historia</div>
+        </div>
+    </div>
+  </section>
+
+  <!-- SECCION DE TAREAS -->
+
+  <section id="tareas" class="page">
+    <div class="card">
+        <h3>Tareas</h3>
+        <input type="text" id="taskInput" placeholder="Nueva tarea">
+        <select id="prioritySelect">
+            <option value="high">Alta</option>
+            <option value="medium">Media</option>
+            <option value="low">Baja</option>
+        </select>
+        <button id="addTaskBtn">Agregar</button>
+        <div id="taskList"></div>
+    </div>
+  </section>
+</div>
+
+<!-- SECCION DE PERFIL -->
+
+<section id="perfil" class="page">
+
+    <div class="nombre">
+
+        <h3>Perfil del Usuario</h3>
+
+        <p>Nombre del usuario: <strong id="perfilUsuario"></strong></p>
+
+    </div>
+
+</section>
+
+<!-- SECCION DE MEJORA -->
+
+<section id="cronología" class="page">
+  <div class="mejora-wrapper">
+    
+    <div class="mejora-main-content">
+      <div class="card compact-card">
+        <h3>Evolución de la Interfaz</h3>
+        <p class="subtitle">Breve recorrido visual del desarrollo.</p>
+        
+        <div class="mejora-evolution-grid">
+          <div class="evo-item">
+            <h4>1. Boceto</h4>
+            <img src="img/boceto.png" alt="Boceto inicial" class="img-mejora-thumb" onclick="openModal(this.src)">
+          </div>
+
+          <div class="evo-item">
+            <h4>2. Login</h4>
+            <img src="img/login.png" alt="Interfaz de Login" class="img-mejora-thumb" onclick="openModal(this.src)">
+          </div>
+
+          <div class="evo-item">
+            <h4>3. V.01</h4>
+            <img src="img/version01.png" alt="Versión 1" class="img-mejora-thumb" onclick="openModal(this.src)">
+          </div>
+
+          <div class="evo-item">
+            <h4>4. Tareas</h4>
+            <img src="img/tareas.png" alt="Función tareas" class="img-mejora-thumb" onclick="openModal(this.src)">
+          </div>
+
+          <div class="evo-item">
+            <h4>5. Móvil</h4>
+            <img src="img/móvil.png" alt="Vista móvil" class="img-mejora-thumb" onclick="openModal(this.src)">
+          </div>
+
+          <div class="evo-item final-thumb">
+            <h4>6. Resultado</h4>
+            <img src="img/resultado.png" alt="Resultado final" class="img-mejora-thumb" onclick="openModal(this.src)">
+          </div>
+        </div>
+        <p class="help-text">💡 Haz clic en una imagen para ampliarla.</p>
+      </div>
+    </div>
+
+    <aside class="mejora-sidebar">
+      <div class="card sidebar-card">
+        <h3>Glosario Técnico</h3>
+        <p class="subtitle">Tecnologías utilizadas en el proyecto.</p>
+        
+        <div class="term-list">
+          <button class="term-link active" onclick="showTerm('html', this)">HTML</button>
+          <button class="term-link" onclick="showTerm('css', this)">CSS</button>
+          <button class="term-link" onclick="showTerm('js', this)">JavaScript</button>
+        </div>
+
+        <div class="term-image-container">
+          <img src="img/html.png" id="term-html" alt="Explicación HTML" class="term-img active">
+          <img src="img/css.png" id="term-css" alt="Explicación CSS" class="term-img">
+          <img src="img/js.png" id="term-js" alt="Explicación JS" class="term-img">
+        </div>
+      </div>
+    </aside>
+
+  </div>
+
+  <div id="imageModal" class="modal" onclick="closeModal()">
+    <span class="close">&times;</span>
+    <img class="modal-content" id="imgModalTarget">
+  </div>
+
+</section>
+
+<footer>
+    <div class="footer-content">
+        <a href="https://www.facebook.com/uatlantico" target="_blank">
+            <img src="logoface.png" alt="Facebook Universidad del Atlántico">
+        </a>
+    </div>
+</footer>
+
+<!-- codigo para navegacion entre paginas script -->
+
+<script>
+  const links = document.querySelectorAll("nav a");
+const pages = document.querySelectorAll(".page");
+
+links.forEach(link => {
+
+link.addEventListener("click", (e) => {
+
+e.preventDefault();
+
+const section = link.dataset.section;
+
+pages.forEach(p => {
+p.classList.remove("active");
+});
+
+document.getElementById(section).classList.add("active");
+
+});
+
+});
+
+</script>
+
+<!-- USUARIO -->
+
+<script>
+  const usuario = 
+  localStorage.getItem("usuarioActivo");
+
+  if(!usuario) {
+    window.location.href = "index1.html";
+  } else {
+    
+    document.getElementById("nombreUsuario").textContent = usuario; 
+
+    document.getElementById("saludoUsuario").textContent = usuario;
+
+    document.getElementById("perfilUsuario").textContent = usuario;
+  }
+
+  function cerrarSesion() {
+    localStorage.removeItem("usuarioActivo");
+  }
+
+const hoy = new Date();
+const fechaFormateada = 
+hoy.toLocaleDateString("es-MX", {
+weekday: "long",
+day:"numeric",
+month:"long"
+}); 
+
+document.getElementById("fechaActual").textContent = fechaFormateada; 
+
+// -------- SISTEMA DE TAREAS -------- //
+
+let tareas = JSON.parse(localStorage.getItem("tareas")) || [];
+
+let eventos = JSON.parse(localStorage.getItem("eventos")) || [];
+let diaSeleccionado = null; 
+
+const btnTarea = document.getElementById("addTaskBtn");
+
+btnTarea.addEventListener("click", () => {
+
+  const titulo = document.getElementById("taskInput").value;
+  const prioridad = document.getElementById("prioritySelect").value;
+
+  if (!titulo) return;
+
+  const nuevaTarea = {
+    id: Date.now(),
+    titulo,
+    prioridad
+  };
+
+  tareas.push(nuevaTarea);
+  localStorage.setItem("tareas", JSON.stringify(tareas));
+  renderTareas();
+});
+
+function renderTareas() {
+
+  const lista = document.getElementById("taskList");
+  lista.innerHTML = "";
+
+  tareas.forEach(t => {
+
+    const contenedor = document.createElement("div");
+    contenedor.classList.add("task-item", `priority-${t.prioridad}`);
+
+    const texto = document.createElement("span");
+    texto.textContent = t.titulo;
+
+    const botones = document.createElement("div");
+    botones.classList.add("task-buttons");
+
+    const btnEditar = document.createElement("button");
+    btnEditar.textContent = "✏";
+    btnEditar.addEventListener("click", () => editarTarea(t.id));
+
+    const btnEliminar = document.createElement("button");
+    btnEliminar.textContent = "🗑";
+    btnEliminar.addEventListener("click", () => eliminarTarea(t.id));
+
+    botones.appendChild(btnEditar);
+    botones.appendChild(btnEliminar);
+
+    contenedor.appendChild(texto);
+    contenedor.appendChild(botones);
+
+    lista.appendChild(contenedor);
+  });
+}
+
+function eliminarTarea(id) {
+  tareas = tareas.filter(t => t.id !== id);
+  localStorage.setItem("tareas", JSON.stringify(tareas));
+  renderTareas();
+}
+
+function editarTarea(id) {
+
+  const tarea = tareas.find(t => t.id === id);
+
+  const nuevoTitulo = prompt("Editar tarea:", tarea.titulo);
+
+  if (!nuevoTitulo) return;
+
+  tarea.titulo = nuevoTitulo;
+
+  localStorage.setItem("tareas", JSON.stringify(tareas));
+  renderTareas();
+}
+
+renderTareas(); 
+
+</script>
+
+<script>
+    // 1. Funcionalidad del Sidebar del Glosario
+    function showTerm(termId, element) {
+        // a. Desactivar todos los botones
+        const buttons = document.querySelectorAll('.term-link');
+        buttons.forEach(btn => btn.classList.remove('active'));
+
+        // b. Ocultar todas las imágenes
+        const images = document.querySelectorAll('.term-img');
+        images.forEach(img => img.classList.remove('active'));
+
+        // c. Activar el botón clicado
+        element.classList.add('active');
+
+        // d. Mostrar la imagen correspondiente
+        const targetImage = document.getElementById('term-' + termId);
+        if (targetImage) {
+            targetImage.classList.add('active');
+        }
+    }
+
+    // 2. Funcionalidad del Modal (Ampliar Imágenes)
+    const modal = document.getElementById("imageModal");
+    const modalImg = document.getElementById("imgModalTarget");
+
+    function openModal(imgSrc) {
+        modal.style.display = "block";
+        modalImg.src = imgSrc;
+    }
+
+    function closeModal() {
+        modal.style.display = "none";
+    }
+
+    // Cerrar con la tecla ESC
+    document.addEventListener('keydown', function(event) {
+        if (event.key === "Escape") {
+            closeModal();
+        }
+    });
+</script>
+
+</body>
+</html>

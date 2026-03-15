@@ -1,0 +1,185 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta charset="UTF-8">
+<title>Login y Registro</title>
+
+<style>
+
+*{
+  box-sizing: border-box;
+}
+
+body {
+  font-family: 'poppins', sans-serif;
+  background: linear-gradient(135deg, #667eea, #764ba2);
+  min-height: 100vh;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin: 0;
+  padding: 20px;
+}
+
+.container {
+  background: linear-gradient(135deg, rgb(255, 232, 255), rgb(255, 249, 255));
+  padding: 30px;
+  border-radius: 10px;
+  width: 100%;
+  max-width: 380px;
+  box-shadow: 0 10px 25px rgba(0,0,0,0.2);
+}
+
+h2 {
+  text-align: center;
+  margin-bottom: 20px;
+}
+
+input {
+  width: 100%;
+  padding: 12px;
+  margin: 8px 0;
+  border-radius: 5px;
+  border: 1px solid #ccc;
+  font-size: 15px;
+}
+
+button {
+  width: 100%;
+  padding: 12px;
+  margin-top: 10px;
+  background: #667eea;
+  border: none;
+  color: #000000;
+  font-size: 16px;
+  border-radius: 5px;
+  cursor: pointer;
+}
+
+button:hover {
+  background: #101648;
+  color: white;
+}
+
+.switch {
+  text-align: center;
+  margin-top: 15px;
+  cursor: pointer;
+  color: #2a47c5;
+}
+
+.hidden {
+  display: none;
+}
+
+/* 📱 Ajustes para celulares */
+@media (max-width: 480px) {
+
+  .container{
+    width: 100%;
+    padding: 20px;
+  }
+
+  h2{
+    font-size: 22px;
+  }
+
+  input{
+    font-size: 14px;
+  }
+
+  button{
+    font-size: 15px;
+  }
+
+}
+
+/* 💻 Ajustes para pantallas grandes */
+@media (min-width: 900px){
+
+  .container{
+    max-width: 420px;
+    padding: 40px;
+  }
+
+  h2{
+    font-size: 26px;
+  }
+
+}
+
+</style>
+</head>
+
+<body>
+
+<div class="container">
+
+<!-- LOGIN -->
+<div id="login">
+<h2>Iniciar Sesión</h2>
+<input type="text" id="loginUser" placeholder="Usuario">
+<input type="password" id="loginPass" placeholder="Contraseña">
+<button onclick="login()">Entrar</button>
+<div class="switch" onclick="showRegister()">¿No tienes cuenta? Regístrate</div>
+</div>
+
+<!-- REGISTRO -->
+<div id="register" class="hidden">
+<h2>Registro</h2>
+<form action="index2.html">
+<input type="text" id="regUser" placeholder="Usuario">
+<input type="password" id="regPass" placeholder="Contraseña">
+<button onclick="register()">Registrar</button>
+<div class="switch" onclick="showLogin()">¿Ya tienes cuenta? Inicia sesión</div>
+</form>
+</div>
+
+</div>
+
+<script>
+
+function showRegister() {
+document.getElementById('login').classList.add('hidden');
+document.getElementById('register').classList.remove('hidden');
+}
+
+function showLogin() {
+document.getElementById('register').classList.add('hidden');
+document.getElementById('login').classList.remove('hidden');
+}
+
+function register() {
+const user = document.getElementById('regUser').value;
+const pass = document.getElementById('regPass').value;
+
+if (user === '' || pass === '') {
+alert('Completa todos los campos');
+return;
+}
+
+localStorage.setItem(user, pass);
+alert('Registro exitoso');
+showLogin();
+}
+
+function login() {
+const user = document.getElementById('loginUser').value;
+const pass = document.getElementById('loginPass').value;
+
+const storedPass = localStorage.getItem(user);
+
+if (storedPass === pass) {
+localStorage.setItem("usuarioActivo", user)
+window.location.href = "index2.html";
+} else {
+alert('Usuario o contraseña incorrectos');
+}
+}
+
+</script>
+
+</body>
+</html>
