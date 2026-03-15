@@ -128,13 +128,15 @@ button:hover {
 
 <!-- REGISTRO -->
 <div id="register" class="hidden">
-    <h2>Registro</h2>
-    <div>
-        <input type="text" id="regUser" placeholder="Usuario">
-        <input type="password" id="regPass" placeholder="Contraseña">
-        <button type="button" onclick="register(event)">Registrar</button>
-        <div class="switch" onclick="showLogin()">¿Ya tienes cuenta? Inicia sesión</div>
-    </div>
+<h2>Registro</h2>
+<form action="agenda.html">
+<input type="text" id="regUser" placeholder="Usuario">
+<input type="password" id="regPass" placeholder="Contraseña">
+<button onclick="register()">Registrar</button>
+<div class="switch" onclick="showLogin()">¿Ya tienes cuenta? Inicia sesión</div>
+</form>
+</div>
+
 </div>
 
 <script>
@@ -149,21 +151,18 @@ document.getElementById('register').classList.add('hidden');
 document.getElementById('login').classList.remove('hidden');
 }
 
-function register(event) {
+function register() {
+const user = document.getElementById('regUser').value;
+const pass = document.getElementById('regPass').value;
 
-    if(event) event.preventDefault();
+if (user === '' || pass === '') {
+alert('Completa todos los campos');
+return;
+}
 
-    const user = document.getElementById('regUser').value;
-    const pass = document.getElementById('regPass').value;
-
-    if (user === '' || pass === '') {
-        alert('Completa todos los campos');
-        return;
-    }
-
-    localStorage.setItem(user, pass);
-    alert('Registro exitoso');
-    showLogin(); 
+localStorage.setItem(user, pass);
+alert('Registro exitoso');
+showLogin();
 }
 
 function login() {
@@ -174,7 +173,7 @@ const storedPass = localStorage.getItem(user);
 
 if (storedPass === pass) {
 localStorage.setItem("usuarioActivo", user)
-window.location.replace("agenda.html");
+window.location.href = "agenda.html";
 } else {
 alert('Usuario o contraseña incorrectos');
 }
