@@ -128,13 +128,13 @@ button:hover {
 
 <!-- REGISTRO -->
 <div id="register" class="hidden">
-  <h2>Registro</h2>
-  <div> 
-    <input type="text" id="regUser" placeholder="Usuario">
-    <input type="password" id="regPass" placeholder="Contraseña">
-    <button type="button" onclick="register()">Registrar</button>
-    <div class="switch" onclick="showLogin()">¿Ya tienes cuenta? Inicia sesión</div>
-  </div>
+    <h2>Registro</h2>
+    <div>
+        <input type="text" id="regUser" placeholder="Usuario">
+        <input type="password" id="regPass" placeholder="Contraseña">
+        <button type="button" onclick="register(event)">Registrar</button>
+        <div class="switch" onclick="showLogin()">¿Ya tienes cuenta? Inicia sesión</div>
+    </div>
 </div>
 
 <script>
@@ -149,18 +149,21 @@ document.getElementById('register').classList.add('hidden');
 document.getElementById('login').classList.remove('hidden');
 }
 
-function register() {
-const user = document.getElementById('regUser').value;
-const pass = document.getElementById('regPass').value;
+function register(event) {
 
-if (user === '' || pass === '') {
-alert('Completa todos los campos');
-return;
-}
+    if(event) event.preventDefault();
 
-localStorage.setItem(user, pass);
-alert('Registro exitoso');
-showLogin();
+    const user = document.getElementById('regUser').value;
+    const pass = document.getElementById('regPass').value;
+
+    if (user === '' || pass === '') {
+        alert('Completa todos los campos');
+        return;
+    }
+
+    localStorage.setItem(user, pass);
+    alert('Registro exitoso');
+    showLogin(); 
 }
 
 function login() {
